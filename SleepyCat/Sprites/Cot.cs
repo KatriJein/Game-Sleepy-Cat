@@ -8,7 +8,7 @@ namespace SleepyCat
         public Cot(Texture2D texture) : base(texture) { }
 
         public Rectangle RectangleOfExit =>
-            new Rectangle((int)Position.X + _texture.Width / 4, (int)Position.Y, _texture.Width / 2, _texture.Height);
+            new((int)Position.X + _texture.Width / 4, (int)Position.Y, _texture.Width / 2, _texture.Height);
 
         public override void CollideWithPlayer(Sprite player, GameState game)
         {

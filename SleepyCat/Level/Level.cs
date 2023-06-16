@@ -13,15 +13,15 @@ namespace SleepyCat
     {
         private readonly ContentManager content;
 
-        private static readonly Vector2 invalidPosition = new Vector2(-1, -1);
+        private static readonly Vector2 invalidPosition = new(-1, -1);
 
-        private readonly List<Vector2> ends = new List<Vector2>();
+        private readonly List<Vector2> ends = new();
 
         private Tile[,] tiles;
 
         private Vector2 exit = invalidPosition;
 
-        public List<Sprite> Sprites = new List<Sprite>();
+        public List<Sprite> Sprites = new();
 
         public Cat Cat { get; private set; }
 
@@ -39,7 +39,7 @@ namespace SleepyCat
         private void LoadSprites(Stream fileStream)
         {
             int width;
-            List<string> lines = new List<string>();
+            var lines = new List<string>();
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 string line = reader.ReadLine();
@@ -222,7 +222,7 @@ namespace SleepyCat
             content.Unload();
         }
 
-        public Point GetPosition(int x, int y) =>
+        public static Point GetPosition(int x, int y) =>
             new Rectangle(x * Tile.Width, y * Tile.Height, Tile.Width, Tile.Height).Location;
 
         public int Width => tiles.GetLength(0);
