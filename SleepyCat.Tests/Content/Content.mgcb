@@ -1,0 +1,45 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin 1.txt
+/copy:1.txt
+
+#begin 2.txt
+/copy:2.txt
+
+#begin 3.txt
+/copy:3.txt
+
+#begin 4.txt
+/copy:4.txt
+
+#begin DifferenStringLength.txt
+/copy:DifferenStringLength.txt
+
+#begin DifferentTile.txt
+/copy:DifferentTile.txt
+
+#begin MultipleExits.txt
+/copy:MultipleExits.txt
+
+#begin MultipleStarts.txt
+/copy:MultipleStarts.txt
+
+#begin NoExit.txt
+/copy:NoExit.txt
+
+#begin NoStart.txt
+/copy:NoStart.txt
+

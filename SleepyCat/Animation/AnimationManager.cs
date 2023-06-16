@@ -1,0 +1,85 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+
+namespace SleepyCat
+{
+    public class AnimationManager
+    {
+        private Animation _animation;
+
+        private float _timer;
+
+        private bool _updated;
+
+        public int FrameWidth => _animation.FrameWidth;
+
+        public int FrameHeight => _animation.FrameHeight;
+
+        public Vector2 Position { get; set; }
+
+        public float Layer { get; private set; }
+
+        public AnimationManager(Animation animation)
+        {
+            _animation = animation;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (!_updated)
+                throw new Exception("Нужно вызвать 'Update' сначала");
+
+            _updated = false;
+
+            spriteBatch.Draw(_animation.Texture,
+                             Position,
+                             new Rectangle(_animation.CurrentFrame * _animation.FrameWidth,
+                                           0,
+                                           _animation.FrameWidth,
+                                           _animation.FrameHeight),
+                             Color.White,
+                             0f,
+                             new Vector2(0, 0),
+                             1f,
+                             SpriteEffects.None,
+                             Layer);
+        }
+
+        public void Play(Animation animation)
+        {
+            if (_animation == animation)
+                return;
+
+            _animation = animation;
+
+            _animation.CurrentFrame = 0;
+
+            _timer = 0;
+        }
+
+        public void Stop()
+        {
+            _timer = 0f;
+
+            _animation.CurrentFrame = 0;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            _updated = true;
+
+            _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (_timer > _animation.FrameSpeed)
+            {
+                _timer = 0f;
+
+                _animation.CurrentFrame++;
+
+                if (_animation.CurrentFrame >= _animation.FrameCount)
+                    _animation.CurrentFrame = 0;
+            }
+        }
+    }
+}
